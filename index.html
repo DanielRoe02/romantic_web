@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Miyya</title>
+  <meta
+    name="description"
+    content="A romantic interactive birthday surprise for Miyya."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="stars"></div>
+  <div id="heart-rain" class="heart-rain" aria-hidden="true"></div>
+
+  <button id="audio-toggle" class="audio-toggle" type="button" hidden>
+    Tap for music 💗
+  </button>
+
+  <main class="app">
+    <section id="scene-intro" class="scene active" aria-label="Intro scene">
+      <div class="scene-content intro-content">
+        <p class="eyebrow">For the one who makes everything feel softer</p>
+        <h1 class="hero-name">Miyya</h1>
+        <div id="countdown" class="countdown" aria-live="polite">3</div>
+        <p class="scene-note">A tiny surprise made with all my love.</p>
+      </div>
+    </section>
+
+    <section id="scene-text" class="scene" aria-label="Birthday reveal scene">
+      <div class="scene-content">
+        <div id="birthday-word" class="birthday-word" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="scene-celebration" class="scene" aria-label="Celebration scene">
+      <div class="scene-content">
+        <p class="eyebrow">Make a wish, love ✨</p>
+
+        <div class="cake-wrap" aria-hidden="true">
+          <div class="cake">
+            <div class="cake-top icing"></div>
+            <div class="cake-layer layer-1"></div>
+            <div class="cake-layer layer-2"></div>
+            <div class="cake-base"></div>
+
+            <div class="candles">
+              <div class="candle"><span class="flame"></span></div>
+              <div class="candle"><span class="flame"></span></div>
+              <div class="candle"><span class="flame"></span></div>
+            </div>
+
+            <div class="plate"></div>
+          </div>
+        </div>
+
+        <p class="celebration-text">You deserve every sweet thing in this world.</p>
+      </div>
+    </section>
+
+    <section id="scene-letter" class="scene" aria-label="Love letter scene">
+      <div class="scene-content letter-content">
+        <div id="wish-card" class="wish-card">
+          <p class="wish-label">Birthday wish</p>
+          <p id="wish-message" class="wish-message">Happy Birthday Sayang</p>
+        </div>
+
+        <div
+          id="paper-stage"
+          class="paper-stage"
+          aria-label="Swipe right to left to open the love letter"
+        >
+          <div id="letter-image" class="letter-image">
+            <div class="paper-placeholder">
+              <span>Swipe left to unfold my love letter 💌</span>
+            </div>
+          </div>
+          <div id="fold-panels" class="fold-panels" aria-hidden="true"></div>
+        </div>
+
+        <p id="swipe-hint" class="swipe-hint">Swipe right → left</p>
+      </div>
+    </section>
+
+    <section id="scene-heart" class="scene" aria-label="Heart collage scene">
+      <div class="scene-content">
+        <p class="eyebrow">Every little memory leads back to you</p>
+        <h2 class="heart-title">Happy Birthday, Miyya 💗</h2>
+        <div id="heart-collage" class="heart-collage" aria-hidden="true"></div>
+      </div>
+    </section>
+  </main>
+
+  <audio id="bg-music" preload="auto" loop>
+    <!-- Replace this file with your real song -->
+    <source src="assets/music/romantic.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>

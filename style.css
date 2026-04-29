@@ -1,0 +1,612 @@
+/* style.css */
+/* Swap your colors here if you want a different romantic mood later. */
+:root {
+  --bg-1: #090311;
+  --bg-2: #1b0a1d;
+  --bg-3: #31112c;
+  --pink: #ff6ca8;
+  --pink-soft: #ffc1d9;
+  --red: #ff5f7a;
+  --white: #fff8fb;
+  --paper: rgba(255, 245, 250, 0.92);
+  --paper-edge: rgba(255, 203, 224, 0.7);
+  --glass: rgba(255, 255, 255, 0.08);
+  --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  --glow: 0 0 24px rgba(255, 108, 168, 0.45);
+  --scene-gap: clamp(1rem, 3vw, 2rem);
+  --transition-fast: 420ms ease;
+  --transition-slow: 900ms ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+  color: var(--white);
+  background:
+    radial-gradient(circle at top, rgba(255, 108, 168, 0.14), transparent 30%),
+    radial-gradient(circle at 20% 20%, rgba(255, 95, 122, 0.12), transparent 25%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-2) 48%, var(--bg-3));
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+.stars,
+.heart-rain,
+.scene {
+  position: fixed;
+  inset: 0;
+}
+
+.stars {
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(255, 255, 255, 0.55) 0 1px, transparent 2px),
+    radial-gradient(circle at 75% 30%, rgba(255, 255, 255, 0.7) 0 1px, transparent 2px),
+    radial-gradient(circle at 35% 80%, rgba(255, 255, 255, 0.45) 0 1px, transparent 2px),
+    radial-gradient(circle at 60% 65%, rgba(255, 255, 255, 0.6) 0 1px, transparent 2px),
+    radial-gradient(circle at 80% 85%, rgba(255, 255, 255, 0.55) 0 1px, transparent 2px);
+  opacity: 0.75;
+  animation: shimmer 5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.heart-rain {
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.heart-drop {
+  position: absolute;
+  top: -10vh;
+  color: rgba(255, 177, 205, 0.78);
+  text-shadow: 0 0 18px rgba(255, 108, 168, 0.4);
+  animation: heart-fall linear infinite;
+  user-select: none;
+}
+
+.audio-toggle {
+  position: fixed;
+  z-index: 30;
+  right: 1rem;
+  bottom: 1rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0.85rem 1.1rem;
+  color: var(--white);
+  background: rgba(255, 108, 168, 0.18);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.audio-toggle:hover,
+.audio-toggle:focus-visible {
+  transform: translateY(-2px) scale(1.02);
+  outline: none;
+}
+
+.app {
+  position: relative;
+  z-index: 2;
+}
+
+.scene {
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(1.02);
+  transition:
+    opacity var(--transition-slow),
+    transform var(--transition-slow),
+    visibility 0s linear 900ms;
+}
+
+.scene.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: scale(1);
+  transition-delay: 0s;
+}
+
+.scene-content {
+  width: min(100%, 900px);
+  display: grid;
+  gap: var(--scene-gap);
+  justify-items: center;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  color: var(--pink-soft);
+  opacity: 0.9;
+}
+
+.hero-name {
+  margin: 0;
+  font-family: "Great Vibes", cursive;
+  font-size: clamp(3rem, 11vw, 6rem);
+  font-weight: 400;
+  line-height: 0.95;
+  text-shadow: 0 0 24px rgba(255, 108, 168, 0.4);
+}
+
+.scene-note,
+.celebration-text {
+  margin: 0;
+  font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+  color: rgba(255, 248, 251, 0.82);
+  max-width: 28rem;
+}
+
+.countdown {
+  min-width: 2ch;
+  font-size: clamp(4.5rem, 25vw, 9rem);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--white);
+  text-shadow:
+    0 0 18px rgba(255, 108, 168, 0.65),
+    0 0 32px rgba(255, 108, 168, 0.3);
+  animation: pulse-pop 1200ms ease both;
+}
+
+.birthday-word {
+  min-height: 2.3em;
+  display: grid;
+  place-items: center;
+  font-size: clamp(2.5rem, 12vw, 7rem);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-shadow:
+    0 0 14px rgba(255, 193, 217, 0.55),
+    0 0 34px rgba(255, 108, 168, 0.35);
+  opacity: 0;
+  transform: translateY(24px) scale(0.92);
+}
+
+.birthday-word.show {
+  animation: word-reveal 900ms ease forwards;
+}
+
+.cake-wrap {
+  position: relative;
+  width: min(82vw, 300px);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.cake {
+  position: relative;
+  width: min(72vw, 220px);
+  height: min(72vw, 220px);
+  filter: drop-shadow(0 18px 26px rgba(255, 95, 122, 0.2));
+  animation: floaty 2400ms ease-in-out infinite;
+}
+
+.cake-layer,
+.cake-base,
+.icing,
+.plate {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 999px;
+}
+
+.icing {
+  top: 46px;
+  width: 150px;
+  height: 26px;
+  background: linear-gradient(180deg, #fff8fb, #ffd8e6);
+  z-index: 4;
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.12);
+}
+
+.cake-layer {
+  background: linear-gradient(180deg, #ff87b8, #ff6390);
+}
+
+.layer-1 {
+  top: 60px;
+  width: 150px;
+  height: 44px;
+  z-index: 3;
+}
+
+.layer-2 {
+  top: 98px;
+  width: 180px;
+  height: 56px;
+  background: linear-gradient(180deg, #ff9ec4, #ff729e);
+  z-index: 2;
+}
+
+.cake-base {
+  top: 144px;
+  width: 210px;
+  height: 32px;
+  background: linear-gradient(180deg, #ffc1d9, #ff9fc5);
+  z-index: 1;
+}
+
+.plate {
+  top: 168px;
+  width: 240px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 8px 22px rgba(255, 255, 255, 0.16);
+}
+
+.candles {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  width: 120px;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.candle {
+  position: relative;
+  width: 14px;
+  height: 42px;
+  border-radius: 999px;
+  background: repeating-linear-gradient(
+    180deg,
+    #fff8fb 0 6px,
+    #ffbad2 6px 12px
+  );
+}
+
+.flame {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% - 2px);
+  width: 16px;
+  height: 22px;
+  transform: translateX(-50%);
+  border-radius: 60% 60% 60% 60% / 80% 80% 35% 35%;
+  background: radial-gradient(circle at 50% 35%, #fff7ab, #ffb347 60%, #ff7b2f);
+  animation: flicker 900ms ease-in-out infinite;
+  box-shadow: 0 0 20px rgba(255, 184, 77, 0.55);
+}
+
+.letter-content {
+  gap: 1rem;
+}
+
+.wish-card {
+  width: min(88vw, 420px);
+  padding: 1rem 1.1rem;
+  border-radius: 20px;
+  background: rgba(255, 250, 252, 0.12);
+  border: 1px solid rgba(255, 220, 234, 0.2);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+  transition: opacity 600ms ease, transform 600ms ease;
+}
+
+.wish-card.hide {
+  opacity: 0;
+  transform: translateY(-12px);
+}
+
+.wish-label {
+  margin: 0 0 0.3rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--pink-soft);
+}
+
+.wish-message {
+  margin: 0;
+  font-size: clamp(1.05rem, 3.6vw, 1.45rem);
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.paper-stage {
+  position: relative;
+  width: min(90vw, 460px);
+  height: min(60vw, 300px);
+  min-height: 240px;
+  border-radius: 26px;
+  overflow: visible;
+  perspective: 1600px;
+  touch-action: none;
+}
+
+.letter-image,
+.fold-panels {
+  position: absolute;
+  inset: 0;
+  border-radius: 26px;
+}
+
+.letter-image {
+  overflow: hidden;
+  border: 1px solid rgba(255, 218, 234, 0.22);
+  background:
+    linear-gradient(180deg, rgba(255, 230, 240, 0.12), rgba(255, 255, 255, 0.02)),
+    radial-gradient(circle at top, rgba(255, 108, 168, 0.2), transparent 35%),
+    rgba(255, 245, 250, 0.08);
+  box-shadow: var(--shadow);
+}
+
+.letter-image.has-photo {
+  background-size: cover;
+  background-position: center;
+}
+
+.letter-image.flash {
+  animation: image-pop 520ms ease;
+}
+
+.paper-placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem;
+  color: rgba(255, 248, 251, 0.88);
+  text-align: center;
+  background:
+    linear-gradient(135deg, rgba(255, 195, 218, 0.18), rgba(255, 255, 255, 0.04)),
+    rgba(255, 255, 255, 0.04);
+}
+
+.paper-placeholder span {
+  max-width: 18rem;
+  line-height: 1.5;
+}
+
+.fold-panels {
+  overflow: visible;
+}
+
+.fold-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 252, 253, 0.97), rgba(255, 224, 236, 0.95));
+  border: 1px solid var(--paper-edge);
+  box-shadow: 8px 0 14px rgba(0, 0, 0, 0.08);
+  transform-origin: right center;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 900ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.fold-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.35), transparent),
+    linear-gradient(90deg, rgba(255, 212, 228, 0.65), rgba(255, 240, 246, 0.1));
+}
+
+.fold-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-left: 1px dashed rgba(255, 182, 209, 0.45);
+  opacity: 0.5;
+}
+
+.fold-panel.opened {
+  transform: rotateY(-168deg);
+}
+
+.swipe-hint {
+  margin: 0;
+  font-size: 0.95rem;
+  color: rgba(255, 248, 251, 0.8);
+  animation: swipe-glow 1400ms ease-in-out infinite;
+}
+
+.swipe-hint.hide {
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+.heart-title {
+  margin: 0;
+  font-size: clamp(2rem, 7vw, 4rem);
+  line-height: 1.05;
+  text-shadow: 0 0 24px rgba(255, 108, 168, 0.34);
+}
+
+.heart-collage {
+  position: relative;
+  width: min(92vw, 420px);
+  aspect-ratio: 1;
+  margin-top: 0.25rem;
+}
+
+.heart-tile {
+  position: absolute;
+  width: clamp(52px, 13vw, 64px);
+  aspect-ratio: 1;
+  left: 50%;
+  top: 56%;
+  opacity: 0;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 216, 232, 0.95);
+  background-size: cover;
+  background-position: center;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.18),
+    0 0 24px rgba(255, 108, 168, 0.32),
+    0 18px 36px rgba(0, 0, 0, 0.28);
+  transform: translate(-50%, -50%) scale(0.2) rotate(0deg);
+  transition:
+    left 800ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    top 800ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    opacity 420ms ease,
+    transform 800ms cubic-bezier(0.2, 0.9, 0.2, 1);
+}
+
+.heart-tile.show {
+  left: var(--x);
+  top: var(--y);
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1) rotate(var(--rotation));
+}
+
+@keyframes shimmer {
+  from {
+    transform: translateY(0);
+    opacity: 0.55;
+  }
+  to {
+    transform: translateY(-8px);
+    opacity: 0.85;
+  }
+}
+
+@keyframes heart-fall {
+  from {
+    transform: translate3d(0, 0, 0) scale(0.9);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  to {
+    transform: translate3d(var(--drift), 120vh, 0) scale(1.05);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  20% {
+    opacity: 1;
+  }
+  60% {
+    transform: scale(1.06);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes word-reveal {
+  0% {
+    opacity: 0;
+    transform: translateY(28px) scale(0.86);
+    letter-spacing: 0.25em;
+  }
+  55% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    letter-spacing: 0.14em;
+  }
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    transform: translateX(-50%) scale(1) rotate(-1deg);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.08) rotate(2deg);
+  }
+}
+
+@keyframes image-pop {
+  0% {
+    transform: scale(0.96);
+    filter: brightness(0.9);
+  }
+  100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes swipe-glow {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-8px);
+  }
+}
+
+@media (min-width: 768px) {
+  .scene {
+    padding: 2rem;
+  }
+
+  .letter-content {
+    gap: 1.25rem;
+  }
+
+  .paper-stage {
+    min-height: 280px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+}
